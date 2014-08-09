@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+require 'audio_dicer'
+
+abort "usage: audio_dicer [script file]" if ARGV.size < 1
+
+AudioDicer.load(ARGV.shift)
