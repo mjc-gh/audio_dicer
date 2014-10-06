@@ -33,7 +33,7 @@ or more `track` each.
 
     album do
       artist 'Dr. Dog'
-      name 'Juan's Basement'
+      name "Juan's Basement"
 
       track 'Say Something', '2:20', '5:36'
       track 'Worst Trip', '9:50', '12:55'
