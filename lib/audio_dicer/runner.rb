@@ -38,10 +38,12 @@ module AudioDicer
         # TODO allow stop to be optional (even splits)
         # TODO allow last track to use EOF
         album.tracks.each.with_index do |track, index|
-          start, stop = track[:time].map { |t| t.sub ':', '.' }
-          tags = "@a=#{opts[:artist].inspect},@b=#{opts[:name].inspect},@t=#{track[:title].inspect}"
+          start, stop = [track[:start], track[:stop]].map! { |t| t.sub ':', '.' }
+          track_num = index + 1
 
-          system "mp3splt -Qf -g [#{tags}] -o '#{index+1} @a - @t' audiodump.mp3 #{start} #{stop}"
+          tags = "@a=#{opts[:artist].inspect},@b=#{opts[:name].inspect},@t=#{track[:title].inspect},@n=#{track_num}"
+
+          system "mp3splt -Qf -g [#{tags}] -o '#{'%02d' % track_num} @a - @t' audiodump.mp3 #{start} #{stop}"
         end
       end
 

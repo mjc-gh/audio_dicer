@@ -16,8 +16,17 @@ module AudioDicer
         @options.update(name: name)
       end
 
-      def track(title, *time)
-        @tracks << { title: title, time: time }
+      def track(title, *times)
+        case times.size
+        when 2 then start, stop = times
+        when 1
+          start = tracks.empty? ? '0:00' : tracks.last[:stop]
+          stop = times.first
+
+        else raise ArgumentError, "2..3 arguments"
+        end
+
+        @tracks << { title: title, start: start, stop: stop }
       end
     end
   end
