@@ -1,6 +1,6 @@
 # AudioDicer
 
-TODO: Write a gem description
+Simply utility to split an MP3 file into many MP3 files using a simple Ruby DSL.
 
 ## Dependencies
 
